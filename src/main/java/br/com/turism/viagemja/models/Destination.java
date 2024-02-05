@@ -26,4 +26,7 @@ public class Destination {
 
     @Column
     private double price;
+
+    @Column
+    private String textDescription;
 }

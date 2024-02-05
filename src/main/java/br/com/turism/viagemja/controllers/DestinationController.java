@@ -1,6 +1,7 @@
 package br.com.turism.viagemja.controllers;
 
 import br.com.turism.viagemja.models.Destination;
+import br.com.turism.viagemja.service.CreateTextDescriptionOpenAI;
 import br.com.turism.viagemja.service.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,13 @@ public class DestinationController {
     @Autowired
     private DestinationService service;
 
+    private CreateTextDescriptionOpenAI openAI;
+
     @PostMapping
     public ResponseEntity<Destination> createDestination(@RequestBody Destination destination) {
+
+        destination.setTextDescription(openAI.showTextDescription((destination.getPlace())));
+
         Destination place = service.create(destination);
 
         return new ResponseEntity<>(place, HttpStatus.CREATED);

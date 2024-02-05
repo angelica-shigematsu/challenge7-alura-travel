@@ -26,6 +26,7 @@ public class DestinationService {
             result.setPlace(newData.getPlace());
             result.setPhoto(newData.getPhoto());
             result.setPrice(newData.getPrice());
+            result.setTextDescription((newData.getTextDescription()));
 
             return this.repository.save(result);
         }).orElseGet(() -> {
