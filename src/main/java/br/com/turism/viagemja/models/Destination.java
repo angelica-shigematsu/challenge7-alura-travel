@@ -14,8 +14,8 @@ import lombok.Setter;
 @EqualsAndHashCode(of="id")
 public class Destination {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column
