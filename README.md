@@ -25,3 +25,6 @@
   
 - (Delete): Remove destination </br>
   localhost:8080/destinos/:id </br></br>
+
+## Deploy do front
+<a href="https://angelica-shigematsu.github.io/challenge7-alura-travel-web/">Landing Page</a>
