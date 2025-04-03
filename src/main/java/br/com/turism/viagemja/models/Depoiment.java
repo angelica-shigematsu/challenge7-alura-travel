@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity()
-@Table(name="depoiments")
+@Table(name="depoiment")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,11 +24,11 @@ public class Depoiment {
     private String fullName;
 
     @Column
-    private String depoimentText;
-
-    @Column
     private String photo;
 
     @Column
     private boolean permissionListOnDepoiment;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Rating> rating;
 }

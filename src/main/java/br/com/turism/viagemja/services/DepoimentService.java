@@ -1,4 +1,4 @@
-package br.com.turism.viagemja.service;
+package br.com.turism.viagemja.services;
 
 import br.com.turism.viagemja.models.Depoiment;
 import br.com.turism.viagemja.repositories.DepoimentRepository;

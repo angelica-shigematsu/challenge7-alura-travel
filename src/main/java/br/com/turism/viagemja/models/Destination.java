@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity()
-@Table(name="destinations")
+@Table(name="destination")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,5 +30,11 @@ public class Destination {
     private double price;
 
     @Column
+    private String typePlace;
+
+    @Column
     private String textDescription;
+
+    @OneToMany(mappedBy = "destination")
+    private List<Rating> rating;
 }

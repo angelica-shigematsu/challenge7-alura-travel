@@ -1,4 +1,4 @@
-package br.com.turism.viagemja.service;
+package br.com.turism.viagemja.services;
 
 import java.net.URI;
 import java.net.http.HttpClient;

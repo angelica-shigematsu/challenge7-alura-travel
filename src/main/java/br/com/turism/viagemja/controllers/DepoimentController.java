@@ -1,7 +1,7 @@
 package br.com.turism.viagemja.controllers;
 
 import br.com.turism.viagemja.models.Depoiment;
-import br.com.turism.viagemja.service.DepoimentService;
+import br.com.turism.viagemja.services.DepoimentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DepoimentController {
 
     @Autowired
-    DepoimentService service;
+    private DepoimentService service;
     @PostMapping()
     public ResponseEntity<Depoiment> createDepoiment(@RequestBody Depoiment depoiment) {
         Depoiment data = service.create(depoiment);
