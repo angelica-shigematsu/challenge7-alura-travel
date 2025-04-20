@@ -1,6 +1,7 @@
 package br.com.turism.viagemja.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,16 +21,19 @@ public class Rating {
 
     @ManyToOne
     @JoinColumn(name="destination_id")
+    @NotNull(message = "Id from destination cannot be null")
     private Destination destination;
 
     @OneToOne
     @JoinColumn(name="depoiment_id")
+    @NotNull(message = "Id from depoiment cannot be null")
     private Depoiment depoiment;
 
     @Column
     private String depoimentText;
 
     @Column
+    @NotNull(message = "Rating cannot be null. Choose number between 1 and 5")
     private int rating;
 
 }

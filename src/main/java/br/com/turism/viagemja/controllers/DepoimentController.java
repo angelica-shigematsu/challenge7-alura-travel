@@ -14,7 +14,8 @@ import java.util.List;
 public class DepoimentController {
 
     @Autowired
-    private DepoimentService service;
+
+    DepoimentService service;
     @PostMapping()
     public ResponseEntity<Depoiment> createDepoiment(@RequestBody Depoiment depoiment) {
         Depoiment data = service.create(depoiment);
