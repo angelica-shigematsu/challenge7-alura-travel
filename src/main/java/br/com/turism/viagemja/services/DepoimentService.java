@@ -1,5 +1,7 @@
 package br.com.turism.viagemja.services;
 
+import br.com.turism.viagemja.dtos.depoiment.DepoimentDto;
+import br.com.turism.viagemja.dtos.depoiment.ListDepoimentDto;
 import br.com.turism.viagemja.models.Depoiment;
 import br.com.turism.viagemja.repositories.DepoimentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,15 @@ import java.util.List;
 @Service
 public class DepoimentService {
     @Autowired
-    DepoimentRepository repository;
-    public Depoiment create(Depoiment depoiment) {
-        return this.repository.save(depoiment);
+    private DepoimentRepository repository;
+    public ListDepoimentDto create(Depoiment depoiment) {
+
+        Depoiment depoimentData = this.repository.save(depoiment);
+
+        return new ListDepoimentDto(
+                depoimentData.getFullName(),
+                depoimentData.getPhoto(),
+                depoimentData.isAllowListDepoiment());
     }
     public List<Depoiment> listRecentDepoiment() {
 
@@ -22,7 +30,7 @@ public class DepoimentService {
         List<Depoiment> showOnlyThreeDepoiment = new ArrayList<>();
 
         for(Depoiment data: depoiment) {
-            if (data.isPermissionListOnDepoiment() && showOnlyThreeDepoiment.size() <= 3) {
+            if (data.isAllowListDepoiment() && showOnlyThreeDepoiment.size() <= 3) {
                 showOnlyThreeDepoiment.add(data);
             }
         }

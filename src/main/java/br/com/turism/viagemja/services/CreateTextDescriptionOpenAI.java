@@ -19,8 +19,7 @@ public class CreateTextDescriptionOpenAI {
             String text = generateText(apiKey, prompt);
            return  text;
         } catch (Exception e) {
-            return "";
-        }
+            return " ";        }
     }
 
     public static String generateText(String apiKey, String prompt) throws Exception {
