@@ -19,11 +19,9 @@ public interface DestinationRepository extends JpaRepository<Destination, Long> 
             FROM Destination d
             JOIN d.rating r
             WHERE (:typePlace IS NULL OR d.typePlace LIKE :typePlace%)
-            AND (:price IS NULL OR d.price <= :price)
             AND (:rating IS NULL OR r.rating = :rating)
             """)
     Page<Destination> findAll(@Param("typePlace") String typePlace,
-                              @Param("price") double price,
                               @Param("rating") int rating,
                               Pageable page);
 }

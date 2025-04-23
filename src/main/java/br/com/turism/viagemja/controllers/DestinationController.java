@@ -29,17 +29,16 @@ public class DestinationController {
 
         Destination place = service.create(destination);
 
-        return new ResponseEntity<>(place, HttpStatus.CREATED);
+        return ResponseEntity.ok(destination);
     }
 
     @GetMapping(path="/listar")
     public ResponseEntity<List<Optional<Page<Destination>>>> findAllDestionation(@RequestBody String typePlace,
-                                                                                 @RequestBody double price,
                                                                                  @RequestBody int rating,
                                                                                  @RequestParam int page,
                                                                                  @RequestParam int quantityPlaces) {
 
-        Optional<Page<Destination>> place = this.service.listAll(typePlace, price, rating, page, quantityPlaces);
+        Optional<Page<Destination>> place = this.service.listAll(typePlace, rating, page, quantityPlaces);
 
        return ResponseEntity.ok(Collections.singletonList(place));
 

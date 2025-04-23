@@ -1,6 +1,8 @@
 package br.com.turism.viagemja.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,15 +23,16 @@ public class Destination {
     private Long id;
 
     @Column
+    @Size(min = 3)
+    @NotNull(message= "Place is required")
     private String place;
 
     @Column
+    @NotNull(message= "Photo is required")
     private String photo;
 
     @Column
-    private double price;
-
-    @Column
+    @NotNull(message = "Type of place is required")
     private String typePlace;
 
     @Column
@@ -37,4 +40,7 @@ public class Destination {
 
     @OneToMany(mappedBy = "destination")
     private List<Rating> rating;
+
+    @OneToMany(mappedBy = "destination")
+    private List<DestinationDetails> destinationDetails;
 }

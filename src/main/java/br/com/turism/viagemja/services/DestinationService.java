@@ -20,18 +20,16 @@ public class DestinationService {
     }
 
     public Optional<Page<Destination>> listAll(String typePlace,
-                                               double price,
                                                int rating,
                                                int page,
                                                int quantityPage) {
-        return Optional.ofNullable(this.repository.findAll(typePlace, price, rating, PageRequest.of(page, quantityPage)));
+        return Optional.ofNullable(this.repository.findAll(typePlace, rating, PageRequest.of(page, quantityPage)));
     }
 
     public Destination update(long id, Destination newData) {
         return this.repository.findById(id).map(result -> {
             result.setPlace(newData.getPlace());
             result.setPhoto(newData.getPhoto());
-            result.setPrice(newData.getPrice());
             result.setTypePlace(newData.getTypePlace());
             result.setTextDescription((newData.getTextDescription()));
 
