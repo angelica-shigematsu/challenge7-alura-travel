@@ -16,6 +16,7 @@
 - Swagger (in future)
 - Automated Test (in future)
 
+
 ## Technical Rules
   1) Budget and Destination table
      - Action: they went separate in another table
