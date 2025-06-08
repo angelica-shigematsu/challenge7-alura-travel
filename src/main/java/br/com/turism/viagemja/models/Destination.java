@@ -3,10 +3,8 @@ package br.com.turism.viagemja.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.util.List;
 
@@ -15,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of="id")
 public class Destination {
     @Id
@@ -38,9 +37,28 @@ public class Destination {
     @Column
     private String textDescription;
 
+    @Column
+    private boolean disableView;
+
     @OneToMany(mappedBy = "destination")
     private List<Rating> rating;
 
     @OneToMany(mappedBy = "destination")
     private List<DestinationDetails> destinationDetails;
+
+    public Destination(String place, String photo, String typePlace) {
+        this.place = place;
+        this.photo = photo;
+        this.typePlace = typePlace;
+    }
+
+    public void updateData(boolean view) {
+        this.setDisableView(!view);
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(obj, this);
+    }
 }

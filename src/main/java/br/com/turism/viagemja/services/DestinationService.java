@@ -8,12 +8,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DestinationService {
-    @Autowired
+    Destination destination = new Destination();
+
     private DestinationRepository repository;
+
+    public DestinationService(DestinationRepository repository) {
+        this.repository = repository;
+    }
 
     public Destination create(Destination destination) {
         return this.repository.save(destination);
@@ -40,7 +46,9 @@ public class DestinationService {
     }
 
     public void remove(long id) {
-        this.repository.deleteById(id);
+        boolean view = this.repository.getReferenceById(id).isDisableView();
+
+        destination.updateData(view);
     }
 
     public Destination getByPlace(String name) {
