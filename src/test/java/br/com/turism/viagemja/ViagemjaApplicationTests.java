@@ -1,7 +1,9 @@
 package br.com.turism.viagemja;
 
 import static br.com.turism.viagemja.commum.DestinationConstants.DESTINATION;
+import static br.com.turism.viagemja.commum.DestinationConstants.INVALID_DESTINATION;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import br.com.turism.viagemja.models.Destination;
 import br.com.turism.viagemja.repositories.DestinationRepository;
@@ -12,9 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 @ExtendWith(MockitoExtension.class)
 class ViagemjaApplicationTests {
@@ -33,5 +32,14 @@ class ViagemjaApplicationTests {
 		System.out.println(place);
 		assertThat(place).isEqualTo(DESTINATION);
 	}
+
+	@Test
+	public void createDestionation_WithInvalidData_ThrowsException() {
+		Mockito.when(destinationRepository.save(INVALID_DESTINATION)).thenThrow(RuntimeException.class);
+
+		assertThatThrownBy(() -> destinationService.create(INVALID_DESTINATION)).isInstanceOf(RuntimeException.class);
+
+	}
+
 
 }
